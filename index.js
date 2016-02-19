@@ -3,6 +3,7 @@ var handlebars = require("handlebars");
 var async = require("async");
 var util = require("util");
 var path = require("path");
+var fs = require("fs");
 var fastreplace = require('./lib/fastreplace');
 var findNestedRequires = require('./lib/findNestedRequires');
 
@@ -15,6 +16,21 @@ module.exports = function(source) {
 	var loaderApi = this;
 	var query = this.query instanceof Object ? this.query : loaderUtils.parseQuery(this.query);
 	var runtimePath = query.runtime || require.resolve("handlebars/runtime");
+	var mypath = this._module.resource;
+	var modulenameparts = mypath.split('/');
+	var modulename = modulenameparts[modulenameparts.length -3];
+	var creator =  modulename.split('-')[0];
+	var actualmodule = modulename.split('-')[1];
+	// console.log(this._module.resource);
+	if(actualmodule != undefined){
+		//Creates a directory with project name if it doesn't exist
+		var destdir = path.join(__dirname,'../../', 'build/',creator);
+		if (!fs.existsSync(destdir)){
+		    fs.mkdirSync(destdir);
+		}
+		//Write the HBS file to fs
+		fs.writeFileSync(destdir + '/' + actualmodule+'.hbs', source);
+	}
 
 	if (!versionCheck(handlebars, require(runtimePath))) {
 		throw new Error('Handlebars compiler version does not match runtime version');
