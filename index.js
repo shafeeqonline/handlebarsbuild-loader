@@ -21,10 +21,13 @@ module.exports = function(source) {
 	var modulename = modulenameparts[modulenameparts.length -3];
 	var creator =  modulename.split('-')[0];
 	var actualmodule = modulename.split('-')[1];
-	// console.log(this._module.resource);
 	if(actualmodule != undefined){
 		//Creates a directory with project name if it doesn't exist
-		var destdir = path.join(__dirname,'../../', 'build/',creator);
+		var tenantdir = path.join(__dirname,'../../', 'build/',creator);
+		if (!fs.existsSync(tenantdir)){
+		    fs.mkdirSync(tenantdir);
+		}
+		var destdir = path.join(tenantdir, actualmodule);
 		if (!fs.existsSync(destdir)){
 		    fs.mkdirSync(destdir);
 		}
