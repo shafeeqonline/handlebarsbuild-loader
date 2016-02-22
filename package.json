@@ -1,50 +1,105 @@
 {
-  "name": "handlebarsbuild-loader",
-  "contributors": [
-    "Alan @altano",
-    "Shafeeq @shafeeqonline"
+  "_args": [
+    [
+      "handlebarsbuild-loader",
+      "/Users/srahm3/Office/IEA/lego-harmony"
+    ]
   ],
-  "description": "handlebars loader module for webpack with CQ build",
+  "_from": "handlebarsbuild-loader@latest",
+  "_id": "handlebarsbuild-loader@1.1.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/handlebarsbuild-loader",
+  "_nodeVersion": "4.0.0",
+  "_npmOperationalInternal": {
+    "host": "packages-6-west.internal.npmjs.com",
+    "tmp": "tmp/handlebarsbuild-loader-1.1.4.tgz_1456080463581_0.9145813316572458"
+  },
+  "_npmUser": {
+    "email": "shafeeq.rahman01@gmail.com",
+    "name": "shafeeqonline"
+  },
+  "_npmVersion": "3.5.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "handlebarsbuild-loader",
+    "raw": "handlebarsbuild-loader",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_shasum": "4f43edcae5173daa3b255b4179447cfe6eecff2d",
+  "_shrinkwrap": null,
+  "_spec": "handlebarsbuild-loader",
+  "_where": "/Users/srahm3/Office/IEA/lego-harmony",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/shafeeqonline/handlebarsbuild-loader/issues"
+  },
+  "contributors": [
+    {
+      "name": "Alan @altano"
+    },
+    {
+      "name": "Shafeeq @shafeeqonline"
+    }
+  ],
   "dependencies": {
     "async": "~0.2.10",
     "fastparse": "^1.0.0",
     "loader-utils": "0.2.x"
   },
-  "peerDependencies": {
-    "handlebars": ">= 1.3.0 < 5"
+  "description": "handlebars loader module for webpack with CQ build",
+  "devDependencies": {
+    "html-loader": "^0.3.0",
+    "mocha": "^1.21.4",
+    "ncp": "^2.0.0",
+    "sinon": "^1.10.3"
   },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dist": {
+    "shasum": "4f43edcae5173daa3b255b4179447cfe6eecff2d",
+    "tarball": "http://registry.npmjs.org/handlebarsbuild-loader/-/handlebarsbuild-loader-1.1.4.tgz"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "gitHead": "7801c1a44c85a7a63e479be5fb678e960bff8848",
+  "homepage": "https://github.com/shafeeqonline/handlebarsbuild-loader",
+  "license": "MIT",
   "licenses": [
     {
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license"
     }
   ],
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "shafeeqonline",
+      "email": "shafeeq.rahman01@gmail.com"
+    }
+  ],
+  "name": "handlebarsbuild-loader",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "handlebars": ">= 1.3.0 < 5"
+  },
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/altano/handlebarsbuild-loader.git"
   },
-  "version": "1.1.3",
-  "devDependencies": {
-    "html-loader": "^0.3.0",
-    "mocha": "^1.21.4",
-    "sinon": "^1.10.3"
-  },
-  "bugs": {
-    "url": "https://github.com/shafeeqonline/handlebarsbuild-loader/issues"
-  },
-  "homepage": "https://github.com/shafeeqonline/handlebarsbuild-loader",
-  "main": "index.js",
-  "files": [
-    "index.js",
-    "lib"
-  ],
-  "directories": {
-    "example": "example",
-    "test": "test"
-  },
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "MIT"
+  "version": "1.1.4"
 }

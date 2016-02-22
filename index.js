@@ -6,6 +6,7 @@ var path = require("path");
 var fs = require("fs");
 var fastreplace = require('./lib/fastreplace');
 var findNestedRequires = require('./lib/findNestedRequires');
+var ncp = require('ncp').ncp;
 
 function versionCheck(hbCompiler, hbRuntime) {
 	return hbCompiler.COMPILER_REVISION === (hbRuntime["default"] || hbRuntime).COMPILER_REVISION;
@@ -17,6 +18,7 @@ module.exports = function(source) {
 	var query = this.query instanceof Object ? this.query : loaderUtils.parseQuery(this.query);
 	var runtimePath = query.runtime || require.resolve("handlebars/runtime");
 	var mypath = this._module.resource;
+	var sourcedir = path.join(mypath, '../');
 	var modulenameparts = mypath.split('/');
 	var modulename = modulenameparts[modulenameparts.length -3];
 	var creator =  modulename.split('-')[0];
@@ -32,7 +34,11 @@ module.exports = function(source) {
 		    fs.mkdirSync(destdir);
 		}
 		//Write the HBS file to fs
-		fs.writeFileSync(destdir + '/' + actualmodule+'.hbs', source);
+		ncp(sourcedir, destdir, function (err) {
+		 if (err) {
+			 return console.error(err);
+		 }
+		});
 	}
 
 	if (!versionCheck(handlebars, require(runtimePath))) {
