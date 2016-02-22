@@ -18,14 +18,27 @@ module.exports = function(source) {
 	var query = this.query instanceof Object ? this.query : loaderUtils.parseQuery(this.query);
 	var runtimePath = query.runtime || require.resolve("handlebars/runtime");
 	var mypath = this._module.resource;
+	var appdir = this.options.output.publicPath;
+	function mkdir(path, root) {
+	    var dirs = path.split('/'), dir = dirs.shift(), root = (root || '') + dir + '/';
+	    try { fs.mkdirSync(root); }
+	    catch (e) {
+	        //dir wasn't made, something went wrong
+	        if(!fs.statSync(root).isDirectory()) throw new Error(e);
+	    }
+	    return !dirs.length || mkdir(dirs.join('/'), root);
+	}
+	var appdirpath = appdir + "/templates";
+	var createbuild = path.join(__dirname, '../../', appdirpath);
+	mkdir(createbuild);
 	var sourcedir = path.join(mypath, '../');
 	var modulenameparts = mypath.split('/');
 	var modulename = modulenameparts[modulenameparts.length -3];
 	var creator =  modulename.split('-')[0];
-	var actualmodule = modulename.split('-')[1];
+	var actualmodule = modulename.split('-')[2];
 	if(actualmodule != undefined){
 		//Creates a directory with project name if it doesn't exist
-		var tenantdir = path.join(__dirname,'../../', 'build/',creator);
+		var tenantdir = path.join(__dirname,'../../', appdirpath, '/',creator);
 		if (!fs.existsSync(tenantdir)){
 		    fs.mkdirSync(tenantdir);
 		}
