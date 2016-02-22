@@ -48,9 +48,6 @@ module.exports = function(source) {
 		}
 		//Write the HBS file to fs
 		ncp(sourcedir, destdir, function (err) {
-		 if (err) {
-			 return console.error(err);
-		 }
 		});
 	}
 
