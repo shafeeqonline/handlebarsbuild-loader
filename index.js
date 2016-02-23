@@ -28,7 +28,7 @@ module.exports = function(source) {
 	    }
 	    return !dirs.length || mkdir(dirs.join('/'), root);
 	}
-	var appdirpath = appdir + "/templates";
+	var appdirpath = path.join(appdir, '../templates');
 	var createbuild = path.join(__dirname, '../../', appdirpath);
 	mkdir(createbuild);
 	var sourcedir = path.join(mypath, '../');
