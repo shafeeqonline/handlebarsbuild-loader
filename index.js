@@ -32,7 +32,12 @@ module.exports = function(source) {
 	var createbuild = path.join(__dirname, '../../', appdirpath);
 	mkdir(createbuild);
 	var sourcedir = path.join(mypath, '../');
-	var modulenameparts = mypath.split('/');
+  if(process.platform == "win32" || process.platform == "win64"){
+  	var modulenameparts = mypath.split('\\');            
+ 	}
+  else{
+  	var modulenameparts = mypath.split('/');
+  }
 	var modulename = modulenameparts[modulenameparts.length -3];
 	var creator =  modulename.split('-')[0];
 	var actualmodule = modulename.split('-')[2];
