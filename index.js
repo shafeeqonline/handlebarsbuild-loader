@@ -29,25 +29,24 @@ module.exports = function(source) {
 	    return !dirs.length || mkdir(dirs.join('/'), root);
 	}
 	var appdirpath = path.join(appdir, '../templates');
-	var createbuild = path.join(__dirname, '../../', appdirpath);
-	mkdir(createbuild);
+	var createbuild = path.join(process.cwd(), appdirpath);
 	var sourcedir = path.join(mypath, '../');
   if(process.platform == "win32" || process.platform == "win64"){
-  	var modulenameparts = mypath.split('\\');            
+  	var modulenameparts = mypath.split('\\');
+		var tenantParts = appdir.split("\\");  
+				mkdir(process.cwd() + appdirpath);          
  	}
   else{
+		mkdir(createbuild);
   	var modulenameparts = mypath.split('/');
+		var tenantParts = appdir.split("/");
   }
 	var modulename = modulenameparts[modulenameparts.length -3];
 	var creator =  modulename.split('-')[0];
 	var actualmodule = modulename.split('-')[2];
-	if(actualmodule != undefined){
+	if((actualmodule != undefined) && (creator == tenantParts[tenantParts.length - 2])){
 		//Creates a directory with project name if it doesn't exist
-		var tenantdir = path.join(__dirname,'../../', appdirpath, '/',creator);
-		if (!fs.existsSync(tenantdir)){
-		    fs.mkdirSync(tenantdir);
-		}
-		var destdir = path.join(tenantdir, actualmodule);
+		var destdir = path.join(createbuild, actualmodule);
 		if (!fs.existsSync(destdir)){
 		    fs.mkdirSync(destdir);
 		}
